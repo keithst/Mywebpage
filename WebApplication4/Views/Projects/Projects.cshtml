@@ -1,0 +1,465 @@
+﻿
+@{
+    ViewBag.Title = "Projects";
+ }
+
+<body>
+    <div class="bodytext">
+        <div class="headtext">
+            <h1>Projects</h1>
+        </div>
+    </div>
+    <div>
+        <div class="btn btn-default btn-lg boxshadow" id="JavaB"><span class="network-name shadow">Javascript Exercises</span></div>
+        <div class="btn btn-default btn-lg boxshadow"><span class="network-name shadow">Blog</span></div>
+        <div class="btn btn-default btn-lg boxshadow"><span class="network-name shadow">Car Finder</span></div>
+    </div>
+    <div id="target" hidden="hidden">
+        <div class="col-xs-12 centertext shadow">
+            <h2>My Javascript Exercises</h2>
+        </div>
+        <div class="col-xs-3 centertext">
+            <a href="" data-toggle="modal" data-target="#number" id="p1" class="shadow"><h4>Number Cruncher</h4></a>
+        </div>
+
+        <div class="modal fade" id="number" tabindex="-1" role="dialog" aria-labelledby="number" aria-hidden="true" on>
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="row">
+                            <div class="col-xs-11">
+                                <h1 class="modal-title" id="myModalLabel">Number Cruncher</h1>
+                            </div>
+                            <div class="col-xs-1">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div>
+                                    <p id="textb"></p>
+                                    <input autofocus type=number id="numberin"><br>
+                                    <input id="submit" type="button" value="Submit" onclick="listHandler();setText();">
+                                    <input id="go" type="button" value="Go!" onclick="getFinal();reset();setText();">
+                                </div>
+                            </div>
+                            <div class="col-xs-9">
+                                <pre class="brush: js">
+function llist() {
+    this.addnode = function () {
+        return { count: null, number: null, next: null };
+    }
+    this.start = null;
+    this.end = null;
+    this.add = function (numberi) {
+        if (this.start === null) {
+            this.start = this.addnode();
+            this.end = this.start;
+        }
+        else {
+            this.end.next = this.addnode();
+            this.end = this.end.next;
+        }
+        this.end.number = numberi;
+        this.end.count++;
+    }
+    this.find = function (numberi) {
+        var findit = this.start;
+        var foundit = 0;
+        while (findit !== null) {
+            if (findit.number === numberi) {
+                findit.count++;
+                foundit = 1;
+            }
+            findit = findit.next;
+        }
+        if (foundit == 0) {
+            this.add(numberi);
+        }
+    }
+    this.numcrunch = function () {
+        var findit = this.start;
+        var loopcnt = 0;
+        greatest = findit.number
+        least = findit.number
+        var work = 0;
+        while (findit !== null) {
+            if (findit.number > greatest) {
+                greatest = findit.number;
+            }
+            if (findit.number < least) {
+                least = findit.number;
+            }
+            work = findit.number * findit.count;
+            ncount += findit.count;
+            sum += work;
+            loopcnt = findit.count;
+            while (loopcnt > 0)
+            {
+                product *= findit.number;
+                loopcnt--;
+            }
+            findit = findit.next;
+        }
+    }
+}
+function listHandler() {
+    var numin = document.getElementById("numberin").value;
+    if (numin == "")
+    {
+        numin = 1;
+        window.alert("No number entered defaulting to 1")
+    }
+    nlist.find(numin);
+}
+function reset() {
+    counter = 1;
+    sum = 0;
+    product = 1;
+    least = 0;
+    greatest = 0;
+    mean = 0;
+    ncount = 0;
+    nlist = new llist();
+}
+function getFinal() {
+    nlist.numcrunch();
+    mean = sum / ncount;
+    window.alert("The lowest number is " + least + "\nThe greastest number is " + greatest +
+                 "\nThe mean is " + mean + "\nThe sum of all numbers is " + sum +
+                 "\nThe product of all numbers is " + product);
+}
+function setText() {
+    document.getElementById("textb").innerHTML = "Enter number " + counter;
+    document.getElementById("numberin").value = "";
+    document.getElementById("numberin").focus();
+    counter++;
+}
+                    </pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer no-margin">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3 centertext">
+            <a href="" data-toggle="modal" data-target="#factoral" id="p2" class="shadow"><h4>Factoral</h4></a>
+        </div>
+
+        <div class="modal fade" id="factoral" tabindex="-1" role="dialog" aria-labelledby="factoral" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="row">
+                            <div class="col-xs-11">
+                                <h1 class="modal-title" id="myModalLabel">Factoral</h1>
+                            </div>
+                            <div class="col-xs-1">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <p>Enter a number</p>
+                                <input autofocus type=number id="numberinF"><br>
+                                <input id="goF" type="button" value="Go!" onclick="doFactoral();resetF();">
+                            </div>
+                            <div class="col-xs-9">
+                                <pre class="brush: js">
+function doFactoral() {
+    var numinF = document.getElementById("numberinF").value;
+    if (numinF == "") {
+        numinF = 1;
+        window.alert("No number entered defaulting to 1")
+    }
+    var numsave = numinF
+    if (numinF > 0) {
+        while (numinF != 1) {
+            resultF *= numinF;
+            numinF--;
+        }
+        window.alert("Factoral of " + numsave + " is " + resultF);
+    }
+    else {
+        window.alert("Error: Number entered is negative.  Please enter a positive number.");
+    }
+}
+function resetF() {
+    resultF = 1;
+    document.getElementById("numberinF").value = "";
+    document.getElementById("numberinF").focus();
+}
+                        </pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer no-margin">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3 centertext">
+            <a href="" data-toggle="modal" data-target="#fizzbuzz" id="p3" class="shadow"><h4>FizzBuzz</h4></a>
+        </div>
+
+        <div class="modal fade" id="fizzbuzz" tabindex="-1" role="dialog" aria-labelledby="fizzbuzz" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="row">
+                            <div class="col-xs-11">
+                                <h1 class="modal-title" id="myModalLabel">FizzBuzz</h1>
+                            </div>
+                            <div class="col-xs-1">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <p id="textbFB"></p>
+                                <input autofocus type=number id="numberinFB"><br>
+                                <input id="submitFB" type="button" value="Submit" onclick="listHandlerFB();checkInputFB();">
+                                <input id="goFB" type="button" value="Go!" onclick="doMultiple();resetFB();checkInputFB();">
+                                <p id="printbFB"></p>
+                            </div>
+                            <div class="col-xs-9">
+                                <pre class="brush: js">
+var maxnumber = 101;
+var badnum = false;
+function llistFB() {
+    this.addnode = function () {
+        return { number: null, next: null };
+    }
+    this.start = null;
+    this.end = null;
+    this.add = function (numberi) {
+        if (this.start === null) {
+            this.start = this.addnode();
+            this.end = this.start;
+        }
+        else {
+            this.end.next = this.addnode();
+            this.end = this.end.next;
+        }
+        this.end.number = numberi;
+    }
+}
+function doMultiple() {
+    var findit = nlistFB.start;
+    masterstring = "";
+    numcheck = 1;
+    while (numcheck < maxnumber) {
+        fizz = findit.number / numcheck;
+        fizzfloor = Math.floor(fizz);
+        fizz -= fizzfloor;
+        if (fizz == 0) {
+            stringFB = "Fizz";
+        }
+        else {
+            stringFB = numcheck;
+        }
+        findit = findit.next;
+        buzz = findit.number / numcheck;
+        buzzfloor = Math.floor(buzz);
+        buzz -= buzzfloor;
+        if (buzz == 0) {
+            if (stringFB == "Fizz") {
+                stringFB += "Buzz";
+            }
+            else {
+                stringFB = "Buzz";
+            }
+        }
+        else {
+            if (stringFB != "Fizz") {
+                stringFB = numcheck;
+            }
+        }
+        masterstring += stringFB + " "
+        numcheck++;
+        stringFB = "";
+        findit = nlistFB.start;
+    }
+    document.getElementById("printbFB").innerHTML = masterstring;
+}
+function listHandlerFB() {
+    var numberinFB = document.getElementById("numberinFB").value;
+    if (numberinFB == "") {
+        numberinFB = 1;
+        window.alert("No number entered defaulting to 1")
+    }
+    if (numberinFB > 100) {
+        badnum = true;
+    }
+    if (numberinFB < 1) {
+        badnum = true;
+    }
+    numinfloor = Math.floor(numberinFB);
+    fraccheck = numberinFB - numinfloor;
+    if (fraccheck < 1 & fraccheck > 0) {
+        badnum = true;
+    }
+    if (badnum) {
+        window.alert("Please enter numbers 1-100 and no fractions");
+    }
+    else {
+        nlistFB.add(numberinFB);
+    }
+}
+function resetFB() {
+    counterFB = 1;
+    badnum = false;
+    nlistFB = new llistFB();
+    document.getElementById("submitFB").disabled = false;
+}
+function setTextFB() {
+    document.getElementById("textbFB").innerHTML = "Enter number " + counterFB;
+    document.getElementById("numberinFB").value = "";
+    document.getElementById("numberinFB").focus();
+}
+function checkInputFB() {
+    if (badnum) {
+        document.getElementById("numberinFB").value = "";
+        document.getElementById("numberinFB").focus();
+        badnum = false;
+    }
+    else {
+        if (counterFB >= 3) {
+            document.getElementById("submitFB").disabled = true;
+            document.getElementById("numberinFB").value = "";
+            document.getElementById("textbFB").innerHTML = "Numbers entered please click Go";
+        }
+        else {
+            setTextFB();
+        }
+        counterFB++;
+    }
+}
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer no-margin">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3 centertext">
+            <a href="" data-toggle="modal" data-target="#palindrome" id="p4" class="shadow"><h4>Palindrome</h4></a>
+        </div>
+
+        <div class="modal fade" id="palindrome" tabindex="-1" role="dialog" aria-labelledby="palindrome" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="row">
+                            <div class="col-xs-11">
+                                <h1 class="modal-title" id="myModalLabel">Palindrome</h1>
+                            </div>
+                            <div class="col-xs-1">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div>
+                                    <p id="textbP"></p>
+                                    <input autofocus type=text id="stringinP"><br>
+                                    <input id="submitP" type="button" value="Submit" onclick="listHandlerP(); Pali(); setTextP(); resetP();">
+                                    <p id="printbP"></p>
+                                </div>
+                            </div>
+                            <div class="col-xs-9">
+                                <pre class="brush: js">
+function llistP() {
+    this.addnode = function () {
+        return { letter: null, next: null, back: null };
+    }
+    this.start = null;
+    this.end = null;
+    this.prev = null;
+    this.add = function (letteri) {
+        if (this.start === null) {
+            this.start = this.addnode();
+            this.end = this.start;
+            this.prev = this.start;
+        }
+        else {
+            this.end.next = this.addnode();
+            this.end = this.end.next;
+            this.end.back = this.prev;
+            this.prev = this.end;
+        }
+        this.end.letter = letteri;
+    }
+}
+function listHandlerP() {
+    var stringin = document.getElementById("stringinP").value;
+    var counter = 0;
+    strlng = stringin.length;
+    while (counter < strlng) {
+        letterin = stringin.charAt(counter);
+        nlistP.add(letterin);
+        counter++;
+    }
+}
+function Pali() {
+    var findit = nlistP.start;
+    var finditend = nlistP.end;
+    var counter = 0;
+    while (counter < strlng) {
+        if (findit.letter == finditend.letter) {
+            palid = true;
+        }
+        else {
+            palid = false;
+        }
+        findit = findit.next;
+        finditend = finditend.back;
+        counter++;
+    }
+    if (palid) {
+        window.alert("Palidrome confirmed");
+    }
+    else {
+        window.alert("This is not a palidrome");
+    }
+}
+function resetP() {
+    nlistP = new llistP();
+}
+function setTextP() {
+    document.getElementById("textbP").innerHTML = "Enter a string";
+    document.getElementById("stringinP").value = "";
+    document.getElementById("stringinP").focus();
+}
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer no-margin">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+@section scripts{
+    <script src="~/Scripts/Projects.js"></script>
+}
+
+
