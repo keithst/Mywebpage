@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Projects";
     var numjs = System.IO.File.ReadAllText(Server.MapPath(@"~/Scripts/NumberCrunch.js"));
-    var facjs = System.IO.File.ReadAllText(Server.MapPath(@"~/Scripts/Factoral.js"));
+    var facjs = System.IO.File.ReadAllText(Server.MapPath(@"~/Scripts/Factorial.js"));
     var fbjs = System.IO.File.ReadAllText(Server.MapPath(@"~/Scripts/FizzBuzz.js"));
     var paljs = System.IO.File.ReadAllText(Server.MapPath(@"~/Scripts/Palindrome.js"));
  }
@@ -63,16 +63,16 @@
             </div>
         </div>
         <div class="col-xs-3 centertext">
-            <a href="" data-toggle="modal" data-target="#factoral" id="p2" class="shadow"><h4>Factoral</h4></a>
+            <a href="" data-toggle="modal" data-target="#factorial" id="p2" class="shadow"><h4>Factorial</h4></a>
         </div>
 
-        <div class="modal fade" id="factoral" tabindex="-1" role="dialog" aria-labelledby="factoral" aria-hidden="true">
+        <div class="modal fade" id="factorial" tabindex="-1" role="dialog" aria-labelledby="factorial" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="row">
                             <div class="col-xs-11">
-                                <h1 class="modal-title" id="myModalLabel">Factoral</h1>
+                                <h1 class="modal-title" id="myModalLabel">Factorial</h1>
                             </div>
                             <div class="col-xs-1">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -84,7 +84,7 @@
                             <div class="col-xs-3">
                                 <p>Enter a number</p>
                                 <input autofocus type=number id="numberinF"><br>
-                                <input id="goF" type="button" value="Go!" onclick="doFactoral();resetF();">
+                                <input id="goF" type="button" value="Go!" onclick="doFactorial();resetF();">
                             </div>
                             <div class="col-xs-9">
                                 <pre class="brush: js">

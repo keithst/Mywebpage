@@ -1,5 +1,5 @@
 ﻿
-function doFactoral() {
+function doFactorial() {
     var numinF = document.getElementById("numberinF").value;
     if (numinF == "") {
         numinF = 1;
@@ -14,7 +14,7 @@ function doFactoral() {
         window.alert("Factoral of " + numsave + " is " + resultF);
     }
     else {
-        window.alert("Error: Number entered is negative.  Please enter a positive number.");
+        window.alert("Error: Number entered is negative or 0.  Please enter a positive number.");
     }
 }
 

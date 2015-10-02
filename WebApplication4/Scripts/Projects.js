@@ -10,10 +10,10 @@
         reset();
         setText();
     });
-    $('#factoral').on('shown.bs.modal', function () {
+    $('#factorial').on('shown.bs.modal', function () {
         resetF();
     })
-    $('#factoral').on('hidden.bs.modal', function () {
+    $('#factorial').on('hidden.bs.modal', function () {
         resetF();
     });
     $('#fizzbuzz').on('shown.bs.modal', function () {
