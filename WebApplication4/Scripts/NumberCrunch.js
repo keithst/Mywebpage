@@ -1,4 +1,5 @@
-﻿function llist() {
+﻿
+function llist() {
 
     this.addnode = function () {
         return { count: null, number: null, next: null };

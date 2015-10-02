@@ -1,4 +1,5 @@
-﻿function doFactoral() {
+﻿
+function doFactoral() {
     var numinF = document.getElementById("numberinF").value;
     if (numinF == "") {
         numinF = 1;

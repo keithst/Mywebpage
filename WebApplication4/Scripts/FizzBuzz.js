@@ -1,4 +1,5 @@
-﻿var maxnumber = 101;
+﻿
+var maxnumber = 101;
 var badnum = false;
 
 function llistFB() {

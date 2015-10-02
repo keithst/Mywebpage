@@ -1,4 +1,5 @@
-﻿function llistP() {
+﻿
+function llistP() {
 
     this.addnode = function () {
         return { letter: null, next: null, back: null };
