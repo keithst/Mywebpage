@@ -30,5 +30,10 @@ namespace WebApplication4.Controllers
             return View();
         }
 
+        public ActionResult PhotoGallery()
+        {
+            return View();
+        }
+
     }
 }

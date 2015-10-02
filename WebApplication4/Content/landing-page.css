@@ -25,6 +25,20 @@ h6 {
     text-align: center;
 }
 
+.bgcolor {
+    background-color: #f8f8f8;
+}
+
+.centerit {
+    position: center;
+}
+
+.centerimg   {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .topnav {
     font-size: 14px;
 }
@@ -54,7 +68,7 @@ h6 {
     color: #f8f8f8;
     padding-top: 15px;
     padding-bottom: 15px;
-    background: url('img/banner-bg.jpg') no-repeat center center;
+    background: url('img/banner.jpg') no-repeat center center;
     background-size: cover;
 }
 
@@ -62,7 +76,7 @@ h6 {
     padding-top: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url('img/intro-bg.jpg') no-repeat center center;
+    background: url('img/landing_main.jpg') no-repeat center center;
     background-size: cover;
 }
 

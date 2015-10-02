@@ -176,11 +176,13 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\img\banner-bg.jpg" />
-    <Content Include="Content\img\dog.png" />
-    <Content Include="Content\img\intro-bg.jpg" />
-    <Content Include="Content\img\ipad.png" />
-    <Content Include="Content\img\phones.png" />
+    <Content Include="Content\img\banner.jpg" />
+    <Content Include="Content\img\landing_main.jpg" />
+    <Content Include="Content\img\pic01.jpg" />
+    <Content Include="Content\img\pic02.jpg" />
+    <Content Include="Content\img\pic03.JPG" />
+    <Content Include="Content\img\pic04.JPG" />
+    <Content Include="Content\img\pic05.jpg" />
     <Content Include="Content\landing-page.css" />
     <Content Include="Content\SyntaxHighlighter\shCore.css" />
     <Content Include="Content\SyntaxHighlighter\shCoreDefault.css" />
@@ -295,6 +297,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Projects\Projects.cshtml" />
     <Content Include="Views\Home\Resume.cshtml" />
+    <Content Include="Views\Home\PhotoGallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
