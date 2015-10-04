@@ -27,7 +27,7 @@ namespace WebApplication4.Controllers
 
         public ActionResult Resume()
         {
-            return View();
+            return File("~/App_Data/KeithSturzenbeckerResume.pdf", "application/pdf");
         }
 
         public ActionResult PhotoGallery()
