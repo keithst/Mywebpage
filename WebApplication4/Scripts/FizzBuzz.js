@@ -93,12 +93,14 @@ function resetFB() {
     badnum = false;
     nlistFB = new llistFB();
     document.getElementById("submitFB").disabled = false;
+    document.getElementById("goFB").disabled = true;
 }
 
 function setTextFB() {
     document.getElementById("textbFB").innerHTML = "Enter number " + counterFB;
     document.getElementById("numberinFB").value = "";
     document.getElementById("numberinFB").focus();
+    counterFB++;
 }
 
 function checkInputFB() {
@@ -110,12 +112,13 @@ function checkInputFB() {
     else {
         if (counterFB >= 3) {
             document.getElementById("submitFB").disabled = true;
+            document.getElementById("goFB").disabled = false;
             document.getElementById("numberinFB").value = "";
             document.getElementById("textbFB").innerHTML = "Numbers entered please click Go";
         }
-        else {
+        else
+        {
             setTextFB();
         }
-        counterFB++;
     }
 }
