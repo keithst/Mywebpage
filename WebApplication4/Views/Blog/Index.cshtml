@@ -32,7 +32,7 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelitem => item.Title)
+                       <a href="@Url.Action("Details", new { id = item.Id})"><span>@Html.DisplayFor(modelitem => item.Title)</span></a>
                     </td>
                     <td class="centertext">
                         @Html.DisplayFor(modelitem => item.Created)
