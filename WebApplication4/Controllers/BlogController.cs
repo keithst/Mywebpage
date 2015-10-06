@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication4.Models;
@@ -34,13 +35,29 @@ namespace WebApplication4.Controllers
 
         public ActionResult Details(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             var Post = db.Posts.Find(id);
+            if (Post == null)
+            {
+                return HttpNotFound();
+            }
             return View(Post);
         }
 
         public ActionResult Edit(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             var Post = db.Posts.Find(id);
+            if (Post == null)
+            {
+                return HttpNotFound();
+            }
             return View(Post);
         }
 
@@ -57,6 +74,21 @@ namespace WebApplication4.Controllers
         }
 
         public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var Post = db.Posts.Find(id);
+            if (Post == null)
+            {
+                return HttpNotFound();
+            }
+            return View(id);
+        }
+        
+        [HttpPost]
+        public ActionResult Delete(int id)
         {
             var Post = db.Posts.Find(id);
             db.Posts.Remove(Post);

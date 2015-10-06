@@ -9,7 +9,8 @@
             <h1>@Model.Title</h1>
         </div>
     </div>
+    <br />
     Title: @Model.Title <br />
     Body: @Model.Body<br />
-    @Html.ActionLink("Return", "Index")
+    <a href="@Url.Action("Index")" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Return</span></a>
 </body>
