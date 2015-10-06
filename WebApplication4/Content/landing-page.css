@@ -21,6 +21,11 @@ h6 {
     font-weight: 700;
 }
 
+.bettertext {
+    min-height: 200px;
+    min-width: 450px;
+}
+
 .centertext {
     text-align: center;
 }

@@ -12,7 +12,8 @@
     <br />
     <form action="@Url.Action("Edit", "Blog")" method="post">
         Title: <input type="text" name="Title" value="@Model.Title" /><br />
-        Body: <input type="text" name="Body" value="@Model.Body" /><br /><br />
+        Body: <textarea type="text" name="Body" value="@Model.Body" class="bettertext"></textarea><br />
         <button type="submit" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Apply Changes</span></button>
+        <a href="@Url.Action("Index")" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Return</span></a>
     </form>
 </body>
