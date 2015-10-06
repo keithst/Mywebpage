@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace WebApplication4.Models
 {
@@ -14,7 +15,8 @@ namespace WebApplication4.Models
         public System.DateTimeOffset Created { get; set; }
         public Nullable<System.DateTimeOffset> Updated { get; set; }
         public string Title { get; set; }
-        public string Slug { get; set; }
+        public string Tags { get; set; }
+        [AllowHtml]
         public string Body { get; set; }
         public string MediaURL { get; set; }
         public bool Published { get; set; }

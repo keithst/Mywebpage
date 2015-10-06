@@ -1,0 +1,13 @@
+﻿@model WebApplication4.Models.BlogPost
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form action="@Url.Action("Edit", "Blog")" method="post">
+    Title: @Html.EditorFor(model => model.Title)<br />
+    Body: @Html.EditorFor(Model => Model.Body)<br />
+    <button type="submit">Edit</button>
+
+</form>
