@@ -39,16 +39,11 @@ function llist() {
     this.numcrunch = function () {
         var findit = this.start;
         var loopcnt = 0;
-        greatest = findit.number
         least = findit.number
         var work = 0;
         while (findit !== null) {
-            if (findit.number > greatest) {
-                greatest = findit.number;
-            }
-            if (findit.number < least) {
-                least = findit.number;
-            }
+            least = Math.min(findit.number, least);
+            greatest = Math.max(findit.number, greatest);
             work = findit.number * findit.count;
             ncount += findit.count;
             sum += work;
