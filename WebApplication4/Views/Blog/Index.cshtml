@@ -3,44 +3,52 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-@Html.ActionLink("Create New", "Create")
-<table class="table">
-    <thread>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Created)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Updated)
-            </th>
-        </tr>
-    </thread>
-    <thread>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelitem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelitem => item.Created)
-            </td>
-            <td>
-                @Html.DisplayFor(modelitem => item.Updated)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id })|
-                @Html.ActionLink("Details", "Details", new { id = item.Id })|
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-    </thread>
-        
-</table>
+<body class="bgcolor">
+    <div class="bodytext boxshadow">
+        <div class="headtext">
+            <h1>Blog Page</h1>
+        </div>
+    </div>
+    @Html.ActionLink("Create New", "Create")
+    <table class="table">
+        <thread>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th class="centertext">
+                    @Html.DisplayNameFor(model => model.Created)
+                </th>
+                <th class="centertext">
+                    @Html.DisplayNameFor(model => model.Updated)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thread>
+        <thread>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.Title)
+                    </td>
+                    <td class="centertext">
+                        @Html.DisplayFor(modelitem => item.Created)
+                    </td>
+                    <td class="centertext">
+                        @Html.DisplayFor(modelitem => item.Updated)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })|
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })|
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </thread>
 
+    </table>
+</body>
 

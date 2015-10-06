@@ -48,7 +48,10 @@ namespace WebApplication4.Controllers
         public ActionResult Edit(BlogPost Post)
         {
             Post.Updated = System.DateTimeOffset.Now;
-            db.Entry(Post).State = EntityState.Modified;
+            db.Posts.Attach(Post);
+            db.Entry(Post).Property("Title").IsModified = true;
+            db.Entry(Post).Property("Body").IsModified = true;
+            db.Entry(Post).Property("Updated").IsModified = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

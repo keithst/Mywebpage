@@ -3,8 +3,13 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
-Title: @Model.Title <br />
-Body: @Model.Body
-
+<body class="bgcolor">
+    <div class="bodytext boxshadow">
+        <div class="headtext">
+            <h1>@Model.Title</h1>
+        </div>
+    </div>
+    Title: @Model.Title <br />
+    Body: @Model.Body<br />
+    @Html.ActionLink("Return", "Index")
+</body>

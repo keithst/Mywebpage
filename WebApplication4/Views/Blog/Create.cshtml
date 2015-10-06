@@ -3,12 +3,16 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<body class="bgcolor">
+    <div class="bodytext boxshadow">
+        <div class="headtext">
+            <h1>Create Post</h1>
+        </div>
+    </div>
+    <form action="@Url.Action("Create", "Blog")" method="post">
+        Title: <input type="text" name="Title" /><br />
+        Body: <input type="text" name="Body" /><br />
+        <button type="submit">Create</button>
 
-<form action="@Url.Action("Create", "Blog")" method="post">
-    Title: <input type="text" name="Title" /><br />
-    Body: <input type="text" name="Body" /><br />
-    <button type="submit">Create</button>
-
-</form>
-
+    </form>
+</body>
