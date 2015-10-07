@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -50,10 +51,24 @@ namespace WebApplication4.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "Id,Created,Updated,Title,Slug,Tags,Body,MediaURL,Published")] BlogPost blogPost)
+        public ActionResult Create([Bind(Include = "Id,Created,Updated,Title,Slug,Tags,Body,MediaURL,Published")] BlogPost blogPost, HttpPostedFileBase image)
         {
+            if(image != null && image.ContentLength > 0)
+            {
+                var ext = Path.GetExtension(image.FileName).ToLower();
+                if (ext != ".png" && ext != ".jpg" && ext != ".jpeg" && ext != ".gif" && ext != ".bmp")
+                    ModelState.AddModelError("image", "Invalid Format.");
+            }
+
             if (ModelState.IsValid)
             {
+                if (image != null)
+                {
+                    var filePath = "/Uploads/";
+                    var absPath = Server.MapPath("~" + filePath);
+                    blogPost.MediaURL = filePath + image.FileName;
+                    image.SaveAs(Path.Combine(absPath, image.FileName));
+                }
                 var Slug = StringUtilities.URLFriendly(blogPost.Title);
                 if(String.IsNullOrWhiteSpace(Slug))
                 {
@@ -138,6 +153,35 @@ namespace WebApplication4.Controllers
             db.Posts.Remove(blogPost);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Comments(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BlogPost blogPost = db.Posts.Find(id);
+            if (blogPost == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.PID = blogPost.Id;
+            ViewBag.PTitle = blogPost.Title;
+            ViewBag.ReturnUrl1 = Request.UrlReferrer.AbsoluteUri;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Comments( Comment comment, int id, string returnUrl)
+        {
+            comment.PostId = id;
+            comment.Created = System.DateTimeOffset.Now; 
+            db.Comments.Add(comment);
+            db.SaveChanges();
+            return Redirect(returnUrl);
         }
 
         protected override void Dispose(bool disposing)

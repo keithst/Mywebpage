@@ -28,6 +28,9 @@
                     @Html.DisplayNameFor(model => model.Updated)
                 </th>
                 <th>
+                    Image
+                </th>
+                <th>
                     Actions
                 </th>
             </tr>
@@ -44,6 +47,12 @@
                     </td>
                     <td class="centertext">
                         @Html.DisplayFor(modelitem => item.Updated)
+                    </td>
+                    <td>
+                        @if (item.MediaURL != null)
+                        {
+                            <img class="img-responsive" src="@item.MediaURL" alt="" />
+                        }
                     </td>
                     <td>
                         @if (User.IsInRole("Admin"))

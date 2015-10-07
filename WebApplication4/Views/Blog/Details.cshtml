@@ -26,5 +26,9 @@
             @Html.Raw(Model.Body)
         </div>
     </div>
+@if (User.IsInRole("Admin"))
+{
+    <a href="@Url.Action("Comments", new { id = Model.Id })" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Comment</span></a>
+}
     <a href="@Url.Action("Index")" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Return</span></a>
 </body>

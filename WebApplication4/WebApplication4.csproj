@@ -475,6 +475,7 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\Blog\Comments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\BlogPost\" />
