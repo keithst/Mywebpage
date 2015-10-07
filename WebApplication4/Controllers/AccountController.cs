@@ -57,7 +57,8 @@ namespace WebApplication4.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
+        /*    ViewBag.ReturnUrl = returnUrl; */
+            ViewBag.ReturnUrl = Request.UrlReferrer.AbsolutePath;
             return View();
         }
 

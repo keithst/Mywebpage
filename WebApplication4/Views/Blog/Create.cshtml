@@ -11,6 +11,7 @@
     </div>
     <br />
     <form action="@Url.Action("Create", "Blog")" method="post">
+        @Html.AntiForgeryToken()
         <div class="row">
             <div class="col-xs-1">
                 Title:
@@ -24,7 +25,7 @@
                 Body: 
             </div>
             <div class="col-xs-11">
-                <textarea type="text" name="Body" class="bettertext"></textarea>
+                @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control", rows="5", id = "editor"} })
             </div>
         </div><br />
         <div class="row">
@@ -39,3 +40,11 @@
         <a href="@Url.Action("Index")" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Return</span></a>
     </form>
 </body>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#editor").tinymce({});
+        });
+    </script>
+}

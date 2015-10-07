@@ -13,88 +13,118 @@ namespace WebApplication4.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Blog
+        [AllowAnonymous]
         public ActionResult Index()
         {
-            var Posts = db.Posts.ToList();
-            return View(Posts);
+            return View(db.Posts.ToList());
         }
 
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Create(BlogPost Post)
-        {
-            Post.Created = System.DateTimeOffset.Now;
-            db.Posts.Add(Post);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
+        // GET: BlogPosts/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var Post = db.Posts.Find(id);
-            if (Post == null)
+            BlogPost blogPost = db.Posts.Find(id);
+            if (blogPost == null)
             {
                 return HttpNotFound();
             }
-            return View(Post);
+            return View(blogPost);
         }
 
+        // GET: BlogPosts/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: BlogPosts/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Created,Updated,Title,Slug,Tags,Body,MediaURL,Published")] BlogPost blogPost)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Posts.Add(blogPost);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(blogPost);
+        }
+
+        // GET: BlogPosts/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var Post = db.Posts.Find(id);
-            if (Post == null)
+            BlogPost blogPost = db.Posts.Find(id);
+            if (blogPost == null)
             {
                 return HttpNotFound();
             }
-            return View(Post);
+            return View(blogPost);
         }
 
+        // POST: BlogPosts/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Edit(BlogPost Post)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Created,Updated,Title,Slug,Tags,Body,MediaURL,Published")] BlogPost blogPost)
         {
-            Post.Updated = System.DateTimeOffset.Now;
-            db.Posts.Attach(Post);
-            db.Entry(Post).Property("Title").IsModified = true;
-            db.Entry(Post).Property("Body").IsModified = true;
-            db.Entry(Post).Property("Updated").IsModified = true;
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                blogPost.Updated = System.DateTimeOffset.Now;
+             /*   db.Posts.Attach(blogPost); */
+                db.Entry(blogPost).Property("Title").IsModified = true;
+                db.Entry(blogPost).Property("Body").IsModified = true;
+                db.Entry(blogPost).Property("Updated").IsModified = true;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(blogPost);
         }
 
+        // GET: BlogPosts/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var Post = db.Posts.Find(id);
-            if (Post == null)
+            BlogPost blogPost = db.Posts.Find(id);
+            if (blogPost == null)
             {
                 return HttpNotFound();
             }
-            return View(id);
+            return View(blogPost);
         }
-        
-        [HttpPost]
-        public ActionResult Delete(int id)
+
+        // POST: BlogPosts/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            var Post = db.Posts.Find(id);
-            db.Posts.Remove(Post);
+            BlogPost blogPost = db.Posts.Find(id);
+            db.Posts.Remove(blogPost);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }
