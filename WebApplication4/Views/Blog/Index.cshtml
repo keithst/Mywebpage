@@ -38,6 +38,8 @@
         <thread>
             @foreach (var item in Model)
             {
+                if (item.Published == true || User.IsInRole("Admin"))
+                {
                 <tr>
                     <td>
                        <a href="@Url.Action("Details", new { id = item.Id, Slug = item.Slug })"><span>@Html.DisplayFor(modelitem => item.Title)</span></a>
@@ -70,6 +72,7 @@
                         }
                     </td>
                 </tr>
+                }
             }
         </thread>
     </table>

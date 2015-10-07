@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication4.Models;
+using Microsoft.AspNet.Identity;
 
 namespace WebApplication4.Controllers
 {
@@ -122,6 +123,7 @@ namespace WebApplication4.Controllers
                 db.Entry(blogPost).Property("Title").IsModified = true;
                 db.Entry(blogPost).Property("Body").IsModified = true;
                 db.Entry(blogPost).Property("Updated").IsModified = true;
+                db.Entry(blogPost).Property("Published").IsModified = true;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -178,6 +180,7 @@ namespace WebApplication4.Controllers
         public ActionResult Comments( Comment comment, int id, string returnUrl)
         {
             comment.PostId = id;
+            comment.AuthorId = User.Identity.GetUserId();
             comment.Created = System.DateTimeOffset.Now; 
             db.Comments.Add(comment);
             db.SaveChanges();
