@@ -10,7 +10,21 @@
         </div>
     </div>
     <br />
-    Title: @Model.Title <br />
-    Body: @Model.Body<br />
+    <div class="row">
+        <div class="col-xs-1">
+            Title:
+        </div>
+        <div class="col-xs-11">
+            @Model.Title
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1">
+            Body:
+        </div>
+        <div class="col-xs-11">
+            @Html.Raw(Model.Body)
+        </div>
+    </div>
     <a href="@Url.Action("Index")" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Return</span></a>
 </body>

@@ -20,9 +20,13 @@ namespace WebApplication4.Controllers
         }
 
         // GET: BlogPosts/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, string Slug)
         {
             if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (String.IsNullOrWhiteSpace(Slug))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -45,10 +49,26 @@ namespace WebApplication4.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,Created,Updated,Title,Slug,Tags,Body,MediaURL,Published")] BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {
+                var Slug = StringUtilities.URLFriendly(blogPost.Title);
+                if(String.IsNullOrWhiteSpace(Slug))
+                {
+                    ModelState.AddModelError("Title", "Invalid title.");
+                    return View(blogPost);
+                }
+                if (db.Posts.Any(p=>p.Slug == Slug))
+                {
+                    ModelState.AddModelError("Title", "The title must be unique.");
+                    return View(blogPost);
+                }
+
+                blogPost.Slug = Slug;
+
+                blogPost.Created = System.DateTimeOffset.Now;
                 db.Posts.Add(blogPost);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -77,12 +97,13 @@ namespace WebApplication4.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,Created,Updated,Title,Slug,Tags,Body,MediaURL,Published")] BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {
                 blogPost.Updated = System.DateTimeOffset.Now;
-             /*   db.Posts.Attach(blogPost); */
+                db.Posts.Attach(blogPost);
                 db.Entry(blogPost).Property("Title").IsModified = true;
                 db.Entry(blogPost).Property("Body").IsModified = true;
                 db.Entry(blogPost).Property("Updated").IsModified = true;
@@ -110,6 +131,7 @@ namespace WebApplication4.Controllers
         // POST: BlogPosts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             BlogPost blogPost = db.Posts.Find(id);
