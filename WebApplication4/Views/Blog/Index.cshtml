@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<WebApplication4.Models.BlogPost>
 @{
     ViewBag.Title = "Index";
+    var tagClose = true;
 }
 
 <body class="bgcolor">
@@ -29,66 +30,64 @@
             </form>
         </div>
     </div>
-    <table class="table">
-        <thread>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th class="centertext">
-                    @Html.DisplayNameFor(model => model.Created)
-                </th>
-                <th class="centertext">
-                    @Html.DisplayNameFor(model => model.Updated)
-                </th>
-                <th>
-                    Image
-                </th>
-                <th>
-                    Actions
-                </th>
-            </tr>
-        </thread>
-        <thread>
-            @foreach (var item in Model)
+        @foreach (var item in Model)
+        {
+            var counter = 1;
+            if (tagClose)
             {
-                if (item.Published == true || User.IsInRole("Admin"))
-                {
-                <tr>
-                    <td>
-                       <a href="@Url.Action("Details", new { id = item.Id, Slug = item.Slug })"><span>@Html.DisplayFor(modelitem => item.Title)</span></a>
-                    </td>
-                    <td class="centertext">
-                        @Html.DisplayFor(modelitem => item.Created)
-                    </td>
-                    <td class="centertext">
-                        @Html.DisplayFor(modelitem => item.Updated)
-                    </td>
-                    <td>
-                        @if (item.MediaURL != null)
-                        {
-                            <img class="img-responsive" src="@item.MediaURL" alt="" />
-                        }
-                    </td>
-                    <td>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                            @Html.Raw("|")
-                        }
-                        
-                        @Html.ActionLink("Details", "Details", new { id = item.Id, Slug = item.Slug })
-                        
-                        @if (User.IsInRole("Admin"))
-                        {
-                            @Html.Raw("|")
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                        }
-                    </td>
-                </tr>
-                }
+                @:<div class="row">
+                tagClose = false;
             }
-        </thread>
-    </table>
+            if (item.Published == true || User.IsInRole("Admin"))
+            {
+                <div class="col-xs-6">
+                    @if (item.MediaURL != null)
+                    {
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <img class="img-responsive centerimg" src="@item.MediaURL" alt="" />
+                            </div>
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="col-xs-12 centertext">
+                            <a href="@Url.Action("Details", new { id = item.Id, Slug = item.Slug })"><span>@Html.DisplayFor(modelitem => item.Title)</span></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            Created: @Html.DisplayFor(modelitem => item.Created)
+                        </div>
+                        <div class="col-xs-6">
+                            Updated: @Html.DisplayFor(modelitem => item.Updated)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            @Html.Raw(item.Body)
+                            @if (User.IsInRole("Admin"))
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                                @Html.Raw("|")
+                            }
+
+                            @Html.ActionLink("Details", "Details", new { id = item.Id, Slug = item.Slug })
+
+                            @if (User.IsInRole("Admin"))
+                            {
+                                @Html.Raw("|")
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+            if (counter % 2 == 0)
+            {
+                @:</div>
+                tagClose = true;
+            }
+            counter++;
+            }
 </body>
 
