@@ -65,9 +65,11 @@ function doMultiple() {
 
 function listHandlerFB() {
     var numberinFB = document.getElementById("numberinFB").value;
+    document.getElementById("printbFB").innerText = "";
     if (numberinFB == "") {
-        numberinFB = 1;
-        window.alert("No number entered defaulting to 1")
+        document.getElementById("printbFB").innerText = "No number entered";
+        input = false;
+        return;
     }
     if (numberinFB > 100) {
         badnum = true;
@@ -81,7 +83,7 @@ function listHandlerFB() {
         badnum = true;
     }
     if (badnum) {
-        window.alert("Please enter numbers 1-100 and no fractions");
+        document.getElementById("printbFB").innerText = "Please enter numbers 1-100 and no fractions";
     }
     else {
         nlistFB.add(numberinFB);
@@ -104,10 +106,11 @@ function setTextFB() {
 }
 
 function checkInputFB() {
-    if (badnum) {
+    if (badnum || !input) {
         document.getElementById("numberinFB").value = "";
         document.getElementById("numberinFB").focus();
         badnum = false;
+        input = true;
     }
     else {
         if (counterFB >= 3) {

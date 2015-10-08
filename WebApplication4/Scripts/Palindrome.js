@@ -27,6 +27,12 @@ function llistP() {
 
 function listHandlerP() {
     var stringin = document.getElementById("stringinP").value;
+    document.getElementById("printbP").innerText = "";
+    if (stringin == "")
+    {
+        document.getElementById("printbP").innerText = "No string entered";
+        return;
+    }
     var counter = 0;
     strlng = stringin.length;
     while (counter < strlng) {
@@ -40,6 +46,7 @@ function Pali() {
     var findit = nlistP.start;
     var finditend = nlistP.end;
     var counter = 0;
+    var stringit = "";
     while (counter < strlng) {
         if (findit.letter == finditend.letter) {
             palid = true;
@@ -47,15 +54,16 @@ function Pali() {
         else {
             palid = false;
         }
+        stringit += findit.letter;
         findit = findit.next;
         finditend = finditend.back;
         counter++;
     }
     if (palid) {
-        window.alert("Palidrome confirmed");
+        document.getElementById("printbP").innerText = stringit + " is a palindrome";
     }
     else {
-        window.alert("This is not a palidrome");
+        document.getElementById("printbP").innerText = stringit + " is not a palidrome";
     }
 }
 

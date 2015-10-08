@@ -1,4 +1,5 @@
-﻿
+﻿var input = true;
+
 function llist() {
 
     this.addnode = function () {
@@ -60,10 +61,12 @@ function llist() {
 
 function listHandler() {
     var numin = document.getElementById("numberin").value;
+    document.getElementById("printit").innerText = "";
     if (numin == "")
     {
-        numin = 1;
-        window.alert("No number entered defaulting to 1")
+        document.getElementById("printit").innerText = "No number entered";
+        input = false;
+        return;
     }
     nlist.find(numin);
 }
@@ -82,14 +85,21 @@ function reset() {
 function getFinal() {
     nlist.numcrunch();
     mean = sum / ncount;
-    window.alert("The lowest number is " + least + "\nThe greastest number is " + greatest +
+    string = "The lowest number is " + least + "\nThe greastest number is " + greatest +
                  "\nThe mean is " + mean + "\nThe sum of all numbers is " + sum +
-                 "\nThe product of all numbers is " + product);
+                 "\nThe product of all numbers is " + product;
+    document.getElementById("printit").innerText = string;
 }
 
 function setText() {
-    document.getElementById("textb").innerHTML = "Enter number " + counter;
-    document.getElementById("numberin").value = "";
-    document.getElementById("numberin").focus();
-    counter++;
+    if (input) {
+        document.getElementById("textb").innerHTML = "Enter number " + counter;
+        document.getElementById("numberin").value = "";
+        document.getElementById("numberin").focus();
+        counter++;
+    }
+    else
+    {
+        input = true;
+    }
 }

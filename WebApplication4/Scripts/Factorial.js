@@ -2,8 +2,8 @@
 function doFactorial() {
     var numinF = document.getElementById("numberinF").value;
     if (numinF == "") {
-        numinF = 1;
-        window.alert("No number entered defaulting to 1")
+        document.getElementById("printitF").innerText = "No number entered";
+        return;
     }
     var numsave = numinF
     if (numinF > 0) {
@@ -11,10 +11,10 @@ function doFactorial() {
             resultF *= numinF;
             numinF--;
         }
-        window.alert("Factoral of " + numsave + " is " + resultF);
+        document.getElementById("printitF").innerText = "Factoral of " + numsave + " is " + resultF;
     }
     else {
-        window.alert("Error: Number entered is negative or 0.  Please enter a positive number.");
+        document.getElementById("printitF").innerText = "Error: Number entered is negative or 0.  Please enter a positive number.";
     }
 }
 
