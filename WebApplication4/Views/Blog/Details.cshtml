@@ -11,19 +11,28 @@
     </div>
     <br />
     <div class="row">
-        <div class="col-xs-1">
-            Title:
+        <div class="col-xs-8 centertext">
+            @if (Model.MediaURL != null)
+            {
+                <div class="row">
+                    <div class="col-xs-12">
+                        <img class="img-responsive centerimg" src="@Model.MediaURL" alt="" />
+                    </div>
+                </div>
+            }
+            <div class="row">
+                <div class="col-xs-12 shadow">
+                    <h3>@Model.Title</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    @Html.Raw(Model.Body)
+                </div>
+            </div>
         </div>
-        <div class="col-xs-11">
-            @Model.Title
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-1">
-            Body:
-        </div>
-        <div class="col-xs-11">
-            @Html.Raw(Model.Body)
+        <div class="col-xs-4">
+
         </div>
     </div>
 @if (User.IsInRole("Admin"))
