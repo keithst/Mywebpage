@@ -14,6 +14,7 @@ using WebApplication4.Models;
 using System.Configuration;
 using SendGrid;
 using System.Net;
+using System.Net.Mail;
 
 namespace WebApplication4
 {
@@ -27,7 +28,7 @@ namespace WebApplication4
 
             SendGridMessage myMessage = new SendGridMessage();
             myMessage.AddTo(message.Destination);
-            myMessage.From = new System.Net.Mail.MailAddress(from);
+            myMessage.From = new MailAddress(from);
             myMessage.Subject = message.Subject;
             myMessage.Html = message.Body;
             var credentials = new NetworkCredential(username, password);
