@@ -29,6 +29,10 @@ h6 {
     text-align: center;
 }
 
+.hrcolor {
+    border-color: #A8A8A0;
+}
+
 .formalign {
     display: inline;
 }
