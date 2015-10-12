@@ -494,7 +494,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Uploads\" />
     <Folder Include="Views\BlogPost\" />
     <Folder Include="Views\Comment\" />
     <Folder Include="Views\StringUtilities\" />

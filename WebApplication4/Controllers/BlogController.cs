@@ -67,6 +67,7 @@ namespace WebApplication4.Controllers
                 {
                     var filePath = "/Uploads/";
                     var absPath = Server.MapPath("~" + filePath);
+                    Directory.CreateDirectory(absPath);
                     blogPost.MediaURL = filePath + image.FileName;
                     image.SaveAs(Path.Combine(absPath, image.FileName));
                 }
@@ -114,13 +115,30 @@ namespace WebApplication4.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "Id,Created,Updated,Title,Slug,Tags,Body,MediaURL,Published")] BlogPost blogPost)
+        public ActionResult Edit([Bind(Include = "Id,Created,Updated,Title,Slug,Tags,Body,MediaURL,Published")] BlogPost blogPost, HttpPostedFileBase image)
         {
+            if (image != null && image.ContentLength > 0)
+            {
+                var ext = Path.GetExtension(image.FileName).ToLower();
+                if (ext != ".png" && ext != ".jpg" && ext != ".jpeg" && ext != ".gif" && ext != ".bmp")
+                    ModelState.AddModelError("image", "Invalid Format.");
+            }
+
+
             if (ModelState.IsValid)
             {
+                if (image != null)
+                {
+                    var filePath = "/Uploads/";
+                    var absPath = Server.MapPath("~" + filePath);
+                    Directory.CreateDirectory(absPath);
+                    blogPost.MediaURL = filePath + image.FileName;
+                    image.SaveAs(Path.Combine(absPath, image.FileName));
+                }
                 blogPost.Updated = System.DateTimeOffset.Now;
                 db.Posts.Attach(blogPost);
                 db.Entry(blogPost).Property("Title").IsModified = true;
+                db.Entry(blogPost).Property("MediaURL").IsModified = true;
                 db.Entry(blogPost).Property("Body").IsModified = true;
                 db.Entry(blogPost).Property("Updated").IsModified = true;
                 db.Entry(blogPost).Property("Published").IsModified = true;

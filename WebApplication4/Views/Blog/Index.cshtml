@@ -94,11 +94,16 @@
                     </div>
                 </div>
             }
+            else { continue; }
             if (counter % 2 == 0)
             {
                 @:</div>
                 tagClose = true;
             }
             counter++;
+            }
+            @if (tagClose == false)
+            {
+                @:</div>
             }
 </body>
