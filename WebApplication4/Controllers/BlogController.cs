@@ -41,6 +41,7 @@ namespace WebApplication4.Controllers
         }
 
         // GET: BlogPosts/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -95,6 +96,7 @@ namespace WebApplication4.Controllers
         }
 
         // GET: BlogPosts/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -124,7 +126,6 @@ namespace WebApplication4.Controllers
                     ModelState.AddModelError("image", "Invalid Format.");
             }
 
-
             if (ModelState.IsValid)
             {
                 if (image != null)
@@ -149,6 +150,7 @@ namespace WebApplication4.Controllers
         }
 
         // GET: BlogPosts/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

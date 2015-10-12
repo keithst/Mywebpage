@@ -88,7 +88,7 @@ namespace WebApplication4.Controllers
         public ActionResult Login(string returnUrl)
         {
         /*    ViewBag.ReturnUrl = returnUrl; */
-            ViewBag.ReturnUrl = Request.UrlReferrer.AbsolutePath;
+            ViewBag.ReturnUrl = Request.UrlReferrer.PathAndQuery;
             return View();
         }
 
@@ -423,7 +423,7 @@ namespace WebApplication4.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Blog");
+            return RedirectToLocal(Request.UrlReferrer.PathAndQuery);
         }
 
         //
