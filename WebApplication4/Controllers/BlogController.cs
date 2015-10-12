@@ -22,17 +22,14 @@ namespace WebApplication4.Controllers
         }
 
         // GET: BlogPosts/Details/5
-        public ActionResult Details(int? id, string Slug)
+        public ActionResult Details(string Slug)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             if (String.IsNullOrWhiteSpace(Slug))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogPost blogPost = db.Posts.Find(id);
+            BlogPost blogPost = db.Posts.FirstOrDefault(p=>p.Slug == Slug);
             if (blogPost == null)
             {
                 return HttpNotFound();
@@ -175,36 +172,6 @@ namespace WebApplication4.Controllers
             db.Posts.Remove(blogPost);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        public ActionResult Comments(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BlogPost blogPost = db.Posts.Find(id);
-            if (blogPost == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.PID = blogPost.Id;
-            ViewBag.PTitle = blogPost.Title;
-            ViewBag.ReturnUrl1 = Request.UrlReferrer.AbsoluteUri;
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public ActionResult Comments( Comment comment, int id, string returnUrl)
-        {
-            comment.PostId = id;
-            comment.AuthorId = User.Identity.GetUserId();
-            comment.Created = System.DateTimeOffset.Now; 
-            db.Comments.Add(comment);
-            db.SaveChanges();
-            return Redirect(returnUrl);
         }
 
         protected override void Dispose(bool disposing)

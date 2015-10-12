@@ -57,7 +57,10 @@
                             <a href="@Url.Action("Details", new { id = item.Id, Slug = item.Slug })"><h1>@Html.DisplayFor(modelitem => item.Title)</h1></a>
                             <hr class="hrcolor">
                             <p><span class="glyphicon glyphicon-time"></span>Posted: @item.Created</p>
-                            <p><span class="glyphicon glyphicon-time"></span>Updated: @item.Updated</p>
+                            @if (item.Updated != null)
+                            {
+                                <p><span class="glyphicon glyphicon-time"></span>Updated: @item.Updated</p>
+                            }
                             @if (item.MediaURL != null)
                             {
                                 <hr class="hrcolor">
