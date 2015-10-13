@@ -71,3 +71,11 @@
         </div>
             <a href="@Url.Action("Index")" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Return</span></a>
 </body>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#editor").tinymce({});
+        });
+    </script>
+}

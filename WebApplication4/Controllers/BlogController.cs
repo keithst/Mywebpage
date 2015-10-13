@@ -16,13 +16,22 @@ namespace WebApplication4.Controllers
     public class BlogController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private IPagedList<BlogPost> masterlist;
         // GET: Blog
         [AllowAnonymous]
         public ActionResult Index(Nullable<int> page)
         {
             int pageSize = 6;
             int pageNumber = (page ?? 1);
-            return View(db.Posts.OrderBy(x => x.Created).ToPagedList(pageNumber, pageSize));
+            if(User.IsInRole("Admin"))
+            {
+               masterlist = db.Posts.OrderByDescending(x => x.Created).ToPagedList(pageNumber, pageSize);
+            }
+            else
+            {
+               masterlist = db.Posts.Where(y => y.Published == true).OrderByDescending(x => x.Created).ToPagedList(pageNumber, pageSize);
+            }
+            return View(masterlist);
         }
 
         // GET: BlogPosts/Details/5

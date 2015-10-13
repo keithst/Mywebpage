@@ -55,8 +55,6 @@
                 @:<div class="row">
                 tagClose = false;
             }
-            if (item.Published == true || User.IsInRole("Admin"))
-            {
                 <div class="col-xs-6">
                     <div class="row">
                         <div class="col-xs-12">
@@ -95,8 +93,6 @@
                         </div>
                     </div>
                 </div>
-            }
-            else { continue; }
             if (counter % 2 == 0)
             {
                 @:</div>
@@ -108,8 +104,11 @@
                       {
                             @:</div>
                       }
-                      
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                      <br />
+    @if(Model.PageCount > 1)
+    {
+        @:Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))   
+    }
 
 </body>
