@@ -187,6 +187,18 @@ namespace WebApplication4.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SComment([Bind(Include = "PostId, Body")]Comment comment, string slug)
+        {
+            comment.AuthorId = User.Identity.GetUserId();
+            comment.Created = System.DateTimeOffset.Now;
+
+            db.Comments.Add(comment);
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.PathAndQuery);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
