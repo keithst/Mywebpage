@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication4.Models;
 using Microsoft.AspNet.Identity;
+using PagedList;
+using PagedList.Mvc;
 
 namespace WebApplication4.Controllers
 {
@@ -18,7 +20,10 @@ namespace WebApplication4.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            return View(db.Posts.ToList());
+            Nullable<int> page = new Nullable<int>();
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            return View(db.Posts.OrderBy(x => x.Created).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: BlogPosts/Details/5
