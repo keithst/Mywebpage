@@ -18,9 +18,8 @@ namespace WebApplication4.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Blog
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult Index(Nullable<int> page)
         {
-            Nullable<int> page = new Nullable<int>();
             int pageSize = 6;
             int pageNumber = (page ?? 1);
             return View(db.Posts.OrderBy(x => x.Created).ToPagedList(pageNumber, pageSize));
