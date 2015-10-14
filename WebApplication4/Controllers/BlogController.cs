@@ -13,6 +13,7 @@ using PagedList.Mvc;
 
 namespace WebApplication4.Controllers
 {
+    [RequireHttps]
     public class BlogController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

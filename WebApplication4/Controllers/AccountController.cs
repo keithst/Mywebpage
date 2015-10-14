@@ -13,6 +13,7 @@ using WebApplication4.Models;
 namespace WebApplication4.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

@@ -53,6 +53,10 @@ h6 {
     margin-left: 10px;
 }
 
+.margin-r {
+    margin-right: 10px;
+}
+
 .centerit {
     position: center;
 }

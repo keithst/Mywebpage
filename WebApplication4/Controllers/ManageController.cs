@@ -11,6 +11,7 @@ using WebApplication4.Models;
 namespace WebApplication4.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

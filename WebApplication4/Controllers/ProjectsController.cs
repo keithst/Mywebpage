@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace WebApplication4.Controllers
 {
+    [RequireHttps]
     public class ProjectsController : Controller
     {
 

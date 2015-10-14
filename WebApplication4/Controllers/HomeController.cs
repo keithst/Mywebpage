@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace WebApplication4.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()
