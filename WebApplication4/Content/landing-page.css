@@ -45,6 +45,14 @@ h6 {
     margin-bottom: 3px;
 }
 
+.margin-t {
+    margin-top: 3px;
+}
+
+.margin-l {
+    margin-left: 10px;
+}
+
 .centerit {
     position: center;
 }

@@ -189,7 +189,7 @@ namespace WebApplication4.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SComment([Bind(Include = "PostId, Body")]Comment comment, string slug)
+        public ActionResult SComment([Bind(Include = "PostId, Body")]Comment comment)
         {
             comment.AuthorId = User.Identity.GetUserId();
             comment.Created = System.DateTimeOffset.Now;
