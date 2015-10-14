@@ -1,4 +1,5 @@
 ﻿@model WebApplication4.Models.BlogPost
+@using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "Details";
 }
@@ -60,8 +61,52 @@
                 @foreach (var comment in Model.Comments)
                 {
                     var author = comment.Author;
-                    <p>@author.DisplayName</p>
-                    <p>@comment.Body</p>
+                    <p>
+                     @author.DisplayName<br />
+                     <span class="glyphicon glyphicon-time"></span>Posted: @comment.Created
+                     @if (comment.Updated != null)
+                     {
+                        @:<span class="glyphicon glyphicon-time"></span>Updated: @comment.Updated
+                     }
+                    </p>
+                    <p id="B @comment.Id">@comment.Body</p>
+                    if (User.Identity.GetUserId() == comment.AuthorId)
+                    {
+                     @:<textarea id="T @comment.Id" hidden>@comment.Body</textarea><br />
+                     @:<button id="@comment.Id" onclick="EditComment(this.id)" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Edit</span></button>   
+                    }
+                     if (comment.Updated == null)
+                     {
+                        @:<ul class="list-inline">
+                        @:<li>
+                        @:<p id="U @comment.Id" hidden>Update: @comment.UpdateReason</p>
+                        @:</li>
+                        if (User.Identity.GetUserId() == comment.AuthorId)
+                        {
+                        @:<li>
+                        @:<div id="UE @comment.Id" hidden>
+                        @:Update: <input type="text" value="@comment.UpdateReason" />
+                        @:</div>
+                        @:</li>
+                        }
+                        @:</ul>
+                     }
+                     else
+                     {
+                        @:<ul class="list-inline">
+                        @:<li>
+                        @:<p id="U @comment.Id">Update: @comment.UpdateReason</p>
+                        @:</li>
+                        if (User.Identity.GetUserId() == comment.AuthorId)
+                        {
+                        @:<li>
+                        @:<div id="UE @comment.Id" hidden>
+                        @:Update: <input type="text" value="@comment.UpdateReason" />
+                        @:</div>
+                        @:</li>
+                        }
+                        @:</ul>
+                     }
                 }
                 <div class="well">
                     <h4>Leave a Comment:</h4>
@@ -80,6 +125,7 @@
             <a href="@Url.Action("Index")" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Return</span></a>
 </body>
 
+<script src="~/Scripts/Comment.js"></script>
 @section Scripts {
     <script>
         $(document).ready(function () {
