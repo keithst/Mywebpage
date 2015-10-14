@@ -199,6 +199,29 @@ namespace WebApplication4.Controllers
             return Redirect(Request.UrlReferrer.PathAndQuery);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DComment(int id)
+        {
+            Comment comment = db.Comments.Find(id);
+            db.Comments.Remove(comment);
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.PathAndQuery);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EComment([Bind(Include = "Id, Body, UpdateReason")]Comment comment)
+        {
+            comment.Updated = System.DateTimeOffset.Now;
+            db.Comments.Attach(comment);
+            db.Entry(comment).Property("Body").IsModified = true;
+            db.Entry(comment).Property("UpdateReason").IsModified = true;
+            db.Entry(comment).Property("Updated").IsModified = true;
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.PathAndQuery);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
