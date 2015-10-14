@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using WebApplication4.Models;
+using Owin.Security.Providers.LinkedIn;
 
 namespace WebApplication4
 {
@@ -53,6 +54,8 @@ namespace WebApplication4
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
             //   consumerSecret: "");
+
+            app.UseLinkedInAuthentication("772983hw6g5zis", "EWEL8ARdddjOKLKC");
 
             app.UseFacebookAuthentication(
                appId: "796840677127768",
