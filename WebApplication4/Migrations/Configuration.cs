@@ -66,7 +66,7 @@ namespace WebApplication4.Migrations
             }
 
             var userModId = userMod.FindByEmail("moderator@coderfoundry.com").Id;
-            userMod.AddToRole(userId, "Mod");
+            userMod.AddToRole(userModId, "Mod");
         
         }
     }
