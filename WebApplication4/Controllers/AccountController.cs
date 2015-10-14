@@ -420,17 +420,10 @@ namespace WebApplication4.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff(bool a)
+        public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            if(a)
-            {
-                return RedirectToAction("Index", "Blog");
-            }
-            else
-            {
-                return RedirectToLocal(Request.UrlReferrer.PathAndQuery);
-            }
+            return RedirectToAction("Index", "Blog");
         }
 
         //

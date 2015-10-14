@@ -9,18 +9,18 @@ function EditComment(inid) {
         document.getElementById("B " + inid).hidden = true;
     }
 
-    if (document.getElementById("T " + inid).hidden == true)
+    if (document.getElementById("F " + inid).hidden == true)
     {
-        document.getElementById("T " + inid).hidden = false;
+        document.getElementById("F " + inid).hidden = false;
     }
     else
     {
-        document.getElementById("T " + inid).hidden = true;
+        document.getElementById("F " + inid).hidden = true;
     }
 
     if (document.getElementById("U " + inid).hidden == true)
     {
-        if (document.getElementById("U " + inid).innerText === "Update: ")
+        if (document.getElementById("U " + inid).innerText === "Update Reason: ")
         {
             document.getElementById("U " + inid).hidden = true;
         }
@@ -32,14 +32,5 @@ function EditComment(inid) {
     else
     {
         document.getElementById("U " + inid).hidden = true;
-    }
-
-    if (document.getElementById("UE " + inid).hidden == true)
-    {
-        document.getElementById("UE " + inid).hidden = false;
-    }
-    else
-    {
-        document.getElementById("UE " + inid).hidden = true;
     }
 }
