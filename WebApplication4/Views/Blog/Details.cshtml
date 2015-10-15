@@ -81,7 +81,7 @@
                         @:<span class="glyphicon glyphicon-time margin-l"></span>Updated: @comment.Updated
                      }
                     @:<hr class="hrcolor">
-                    @:<p id="B @comment.Id">@comment.Body</p>
+                    @:<p id="B @comment.Id" class="padcb">@comment.Body</p>
                     if (comment.Updated == null)
                     {
                         @:<p id="U @comment.Id" hidden>Update Reason: @comment.UpdateReason</p>
