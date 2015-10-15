@@ -60,6 +60,8 @@
                 <hr class="hrcolor">
                 <br />
                 <br />
+                <h3>Comment Section</h3>
+                <hr class="hrcolor">
                 @foreach (var comment in Model.Comments)
                 {
                     var author = comment.Author;
@@ -71,6 +73,7 @@
                         @:<span class="glyphicon glyphicon-time margin-l"></span>Updated: @comment.Updated
                      }
                     </p>
+                    <hr class="hrcolor">
                     <p id="B @comment.Id">@comment.Body</p>
                     if (comment.Updated == null)
                     {
@@ -96,7 +99,7 @@
                         @:</form>
                         @:<button id="@comment.Id" onclick="EditComment(this.id)" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Edit</span></button>
                     }
-                    <hr class="hrcolor">
+                    <hr class="hrcolor"><br />
                 }
                 <div class="well">
                     @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)

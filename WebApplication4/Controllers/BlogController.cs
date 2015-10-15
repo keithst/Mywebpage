@@ -37,7 +37,7 @@ namespace WebApplication4.Controllers
                     queryd = queryd.Union(queryc.Where(x => x.Body.Contains(sub)).Select(e => e.PostId));
                 }
                 query = query.Where(o => (o.Title.Contains(search)) || (o.Body.Contains(search)) || (o.Tags.Contains(search))
-                    || (o.Slug.Contains(search)));
+                || (o.Slug.Contains(search)));
                 foreach (int pid in queryd)
                 {
                     query = query.Union(queryt.Where(z => z.Id == pid));
