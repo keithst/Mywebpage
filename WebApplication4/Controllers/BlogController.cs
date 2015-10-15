@@ -20,18 +20,36 @@ namespace WebApplication4.Controllers
         private IPagedList<BlogPost> masterlist;
         // GET: Blog
         [AllowAnonymous]
-        public ActionResult Index(Nullable<int> page)
+        public ActionResult Index(Nullable<int> page, string search)
         {
+            ViewBag.search = search;
             int pageSize = 6;
             int pageNumber = (page ?? 1);
-            if(User.IsInRole("Admin"))
+            if(!string.IsNullOrWhiteSpace(search))
             {
-               masterlist = db.Posts.OrderByDescending(x => x.Created).ToPagedList(pageNumber, pageSize);
+                var query = db.Posts.AsQueryable();
+                query = query.Where(o => (o.Title == search) || (o.Body.Contains(search)));
+                if (User.IsInRole("Admin"))
+                {
+                    masterlist = query.OrderByDescending(x => x.Created).ToPagedList(pageNumber, pageSize);
+                }
+                else
+                {
+                    masterlist = query.Where(y => y.Published == true).OrderByDescending(x => x.Created).ToPagedList(pageNumber, pageSize);
+                }
             }
             else
             {
-               masterlist = db.Posts.Where(y => y.Published == true).OrderByDescending(x => x.Created).ToPagedList(pageNumber, pageSize);
+                if (User.IsInRole("Admin"))
+                {
+                    masterlist = db.Posts.OrderByDescending(x => x.Created).ToPagedList(pageNumber, pageSize);
+                }
+                else
+                {
+                    masterlist = db.Posts.Where(y => y.Published == true).OrderByDescending(x => x.Created).ToPagedList(pageNumber, pageSize);
+                }
             }
+
             return View(masterlist);
         }
 
