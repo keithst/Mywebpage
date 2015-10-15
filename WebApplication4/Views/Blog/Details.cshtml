@@ -43,38 +43,45 @@
     </div><br />
         <div class="row">
             <div class="col-xs-8">
-                <h1>@Model.Title</h1>
-                <hr class="hrcolor">
-                <p><span class="glyphicon glyphicon-time"></span>Posted: @Model.Created</p>
-                @if (Model.Updated != null)
-                {
-                    <p><span class="glyphicon glyphicon-time"></span>Updated: @Model.Updated</p>
-                }
-                @if (Model.MediaURL != null)
-                {
-                    <hr class="hrcolor">
-                    <img class="img-responsive" src="@Model.MediaURL" alt="">
-                }
-                <hr class="hrcolor">
-                @Html.Raw(Model.Body)
-                <hr class="hrcolor">
+                <div class="row boxshadowblog">
+                    <div class="col-xs-12">
+                        <h1 class="shadowlink">@Model.Title</h1>
+                        <hr class="hrcolor">
+                        <p><span class="glyphicon glyphicon-time"></span>Posted: @Model.Created</p>
+                        @if (Model.Updated != null)
+                        {
+                            <p><span class="glyphicon glyphicon-time"></span>Updated: @Model.Updated</p>
+                        }
+                        @if (Model.MediaURL != null)
+                        {
+                            <hr class="hrcolor">
+                            <img class="img-responsive" src="@Model.MediaURL" alt="">
+                        }
+                        <hr class="hrcolor">
+                        @Html.Raw(Model.Body)
+                        <hr class="hrcolor">
+                    </div>
+                </div>
                 <br />
                 <br />
-                <h3>Comment Section</h3>
-                <hr class="hrcolor">
+                <div class="row">
+                    <div class="col-xs-12 boxshadowblog">
+                        <h3 class="padc">Comment Section</h3>
+                    </div>
+                </div>
                 @foreach (var comment in Model.Comments)
                 {
                     var author = comment.Author;
-                    <p>
-                    Display Name: @author.DisplayName<br />
-                     <span class="glyphicon glyphicon-time"></span>Posted: @comment.Created
-                     @if (comment.Updated != null)
+                    @:<div class="row boxshadowblog padcc">
+                    @:<div class="col-xs-12">
+                    @:<p class="margin-b-l">Display Name: @author.DisplayName</p>
+                    @:<span class="glyphicon glyphicon-time"></span>Posted: @comment.Created
+                     if (comment.Updated != null)
                      {
                         @:<span class="glyphicon glyphicon-time margin-l"></span>Updated: @comment.Updated
                      }
-                    </p>
-                    <hr class="hrcolor">
-                    <p id="B @comment.Id">@comment.Body</p>
+                    @:<hr class="hrcolor">
+                    @:<p id="B @comment.Id">@comment.Body</p>
                     if (comment.Updated == null)
                     {
                         @:<p id="U @comment.Id" hidden>Update Reason: @comment.UpdateReason</p>
@@ -99,9 +106,11 @@
                         @:</form>
                         @:<button id="@comment.Id" onclick="EditComment(this.id)" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Edit</span></button>
                     }
-                    <hr class="hrcolor"><br />
+                    @:</div>
+                    @:</div>
+                    @:<br />
                 }
-                <div class="well">
+                <div class="well boxshadowblog">
                     @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                     {
                         @:<h4>Leave a Comment:</h4>
