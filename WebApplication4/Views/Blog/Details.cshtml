@@ -47,10 +47,52 @@
                     <div class="col-xs-12">
                         <h1 class="shadowlink">@Model.Title</h1>
                         <hr class="hrcolor">
-                        <p><span class="glyphicon glyphicon-time"></span>Posted: @Model.Created</p>
+                        @{
+                            var daysp = (System.DateTimeOffset.Now - Model.Created).Days;
+                            var hoursp = (System.DateTimeOffset.Now - Model.Created).Hours;
+                            var minsp = (System.DateTimeOffset.Now - Model.Created).Minutes;
+                            string datestringp = "";
+                            if (daysp > 0)
+                            {
+                                datestringp += daysp + " days, ";
+                            }
+                            if (hoursp > 0 || daysp > 0)
+                            {
+                                datestringp += hoursp + " hours, ";
+                            }
+                            if (minsp > 0 || hoursp > 0 || daysp > 0)
+                            {
+                                datestringp += minsp + " mins ago";
+                            }
+                            else
+                            {
+                                datestringp = "~1 min ago";
+                            }
+                            @:<p><span class="glyphicon glyphicon-time"></span>Posted: @datestringp</p>
+                        }
                         @if (Model.Updated != null)
                         {
-                            <p><span class="glyphicon glyphicon-time"></span>Updated: @Model.Updated</p>
+                            var daysup = (System.DateTimeOffset.Now - Model.Updated.Value).Days;
+                            var hoursup = (System.DateTimeOffset.Now - Model.Updated.Value).Hours;
+                            var minsup = (System.DateTimeOffset.Now - Model.Updated.Value).Minutes;
+                            string datestringup = "";
+                            if (daysup > 0)
+                            {
+                                datestringup += daysup + " days, ";
+                            }
+                            if (hoursup > 0 || daysup > 0)
+                            {
+                                datestringup += hoursup + " hours, ";
+                            }
+                            if (minsup > 0 || hoursup > 0 || daysup > 0)
+                            {
+                                datestringup += minsup + " mins ago";
+                            }
+                            else
+                            {
+                                datestringup = "~1 min ago";
+                            }
+                            @:<p><span class="glyphicon glyphicon-time"></span>Updated: @datestringup</p>
                         }
                         @if (Model.MediaURL != null)
                         {
@@ -75,10 +117,50 @@
                     @:<div class="row boxshadowblog padcc">
                     @:<div class="col-xs-12">
                     @:<p class="margin-b-l">Display Name: @author.DisplayName</p>
-                    @:<span class="glyphicon glyphicon-time"></span>Posted: @comment.Created
+                    var days = (System.DateTimeOffset.Now - comment.Created).Days;
+                    var hours = (System.DateTimeOffset.Now - comment.Created).Hours;
+                    var mins = (System.DateTimeOffset.Now - comment.Created).Minutes;
+                    string datestring = "";
+                    if(days > 0)
+                    {
+                        datestring += days + " days, ";
+                    }
+                    if(hours > 0 || days > 0)
+                    {
+                        datestring += hours + " hours, ";
+                    }
+                    if(mins > 0 || hours > 0 || days > 0)
+                    {
+                        datestring += mins + " mins ago";
+                    }
+                    else
+                    {
+                        datestring = "~1 min ago";
+                    }
+                    @:<span class="glyphicon glyphicon-time"></span>Posted: @datestring
                      if (comment.Updated != null)
                      {
-                        @:<span class="glyphicon glyphicon-time margin-l"></span>Updated: @comment.Updated
+                        var daysu = (System.DateTimeOffset.Now - comment.Updated.Value).Days;
+                        var hoursu = (System.DateTimeOffset.Now - comment.Updated.Value).Hours;
+                        var minsu = (System.DateTimeOffset.Now - comment.Updated.Value).Minutes;
+                        string datestringu = "";
+                        if (daysu > 0)
+                        {
+                            datestringu += daysu + " days, ";
+                        }
+                        if (hoursu > 0 || daysu > 0)
+                        {
+                            datestringu += hoursu + " hours, ";
+                        }
+                        if (minsu > 0 || hoursu > 0 || daysu > 0)
+                        {
+                            datestringu += minsu + " mins ago";
+                        }
+                        else
+                        {
+                            datestringu = "~1 min ago";
+                        }   
+                        @:<span class="glyphicon glyphicon-time margin-l"></span>Updated: @datestringu
                      }
                     @:<hr class="hrcolor">
                     @:<p id="B @comment.Id" class="padcb">@comment.Body</p>
