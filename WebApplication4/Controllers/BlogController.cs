@@ -31,11 +31,21 @@ namespace WebApplication4.Controllers
                 var queryt = query;
                 var queryc = db.Comments.AsQueryable();
                 var queryd = queryc.Where(x => x.Body.Contains(search)).Select(e => e.PostId);
+                string[] subsearch = search.Split(' ');
+                foreach (string sub in subsearch)
+                {
+                    queryd = queryd.Union(queryc.Where(x => x.Body.Contains(sub)).Select(e => e.PostId));
+                }
                 query = query.Where(o => (o.Title.Contains(search)) || (o.Body.Contains(search)) || (o.Tags.Contains(search))
                     || (o.Slug.Contains(search)));
                 foreach (int pid in queryd)
                 {
                     query = query.Union(queryt.Where(z => z.Id == pid));
+                }
+                foreach (string sub1 in subsearch)
+                {
+                    query = query.Union(queryt.Where(o => (o.Title.Contains(sub1)) || (o.Body.Contains(sub1)) || (o.Tags.Contains(sub1))
+                    || (o.Slug.Contains(sub1))));
                 }
                 if (User.IsInRole("Admin"))
                 {
