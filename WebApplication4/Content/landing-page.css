@@ -53,8 +53,17 @@ h6 {
     margin-top: 3px;
 }
 
+.margin-t-l {
+    margin-top: 12px;
+}
+
 .margin-l {
     margin-left: 10px;
+}
+
+.image-b {
+    max-height: 300px;
+    max-width: 450px;
 }
 
 .padc {
@@ -85,6 +94,10 @@ h6 {
 
 .valignc{
     vertical-align: middle;
+}
+
+.e-mailbox {
+    width: 350px;
 }
 
 .searchbox {

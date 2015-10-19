@@ -15,24 +15,34 @@
 <body>
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container topnav">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        @Html.ActionLink("Home", "Index", "Home")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Projects", "Projects", "Projects")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Blog", "Index", "Blog")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Photo Gallery", "PhotoGallery", "Home")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Contact", "Contact", "Home")
-                    </li>
-                </ul>
-            </div>
+                <div class="row">
+                    <div class="col-xs-4 margin-t-l">
+                        @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                        {
+                            @:Logged in as: @User.Identity.Name
+                        }
+                    </div>
+                    <div class="col-xs-8">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                @Html.ActionLink("Home", "Index", "Home")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Projects", "Projects", "Projects")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Blog", "Index", "Blog")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Photo Gallery", "PhotoGallery", "Home")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Contact", "Contact", "Home")
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+    </div>
         </nav>
     <div class="container body-content">
         @RenderBody()

@@ -45,6 +45,10 @@
             <div class="col-xs-8">
                 <div class="row boxshadowblog">
                     <div class="col-xs-12">
+                        @if (Model.MediaURL != null)
+                        {
+                            <img class="img-responsive image-b" src="@Model.MediaURL" alt="">
+                        }
                         <h1 class="shadowlink">@Model.Title</h1>
                         <hr class="hrcolor">
                         @{
@@ -93,11 +97,6 @@
                                 datestringup = "~1 min ago";
                             }
                             @:<p><span class="glyphicon glyphicon-time"></span>Updated: @datestringup</p>
-                        }
-                        @if (Model.MediaURL != null)
-                        {
-                            <hr class="hrcolor">
-                            <img class="img-responsive" src="@Model.MediaURL" alt="">
                         }
                         <hr class="hrcolor">
                         @Html.Raw(Model.Body)
