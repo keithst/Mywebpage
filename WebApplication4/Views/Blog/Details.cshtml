@@ -45,12 +45,11 @@
             <div class="col-xs-8">
                 <div class="row boxshadowblog">
                     <div class="col-xs-12">
-                        <h1 class="shadowlink">@Model.Title</h1>
                         @if (Model.MediaURL != null)
                         {
-                            <hr class="hrcolor">
                             <img class="img-responsive image-b" src="@Model.MediaURL" alt="">
                         }
+                        <h1 class="shadowlink">@Model.Title</h1>
                         <hr class="hrcolor">
                         @{
                             var daysp = (System.DateTimeOffset.Now - Model.Created).Days;
@@ -181,16 +180,12 @@
                             @:Update Reason: <input type="text" name="UpdateReason" value="@comment.UpdateReason" required/><br />
                             @:<button type="submit" class="btn btn-default btn-sm boxshadow margin-b margin-t"><span class="network-name shadow">Submit Changes</span></button>
                         @:</form>
-                        @:<form role="form" action="@Url.Action("DComment", "Blog")" method="post" id="FD @comment.Id" hidden>
+                        @:<form role="form" action="@Url.Action("DComment", "Blog")" method="post" class="formalign">
                             @Html.AntiForgeryToken()
                             @:<input type="hidden" name="Id" value="@comment.Id" />
-                            @:<button type="button" id="@comment.Id" onclick="StopDelete(this.id)" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Cancel</span></button>
-                            @:<button type="submit" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Confirm Delete</span></button>
+                            @:<button type="submit" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Delete</span></button>
                         @:</form>
-                        @:<div id="BD @comment.Id">
-                            @:<button id="D @comment.Id" onclick="Delete(this.id)" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Delete</span></button>
-                            @:<button id="@comment.Id" onclick="EditComment(this.id)" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Edit</span></button>
-                        @:</div>
+                        @:<button id="@comment.Id" onclick="EditComment(this.id)" class="btn btn-default btn-sm boxshadow"><span class="network-name shadow">Edit</span></button>
                     }
                     @:</div>
                     @:</div>
