@@ -125,9 +125,9 @@
                             @{
                                 var raw = Html.Raw(item.Body).ToString();
                                 raw = raw.Replace("&nbsp;", " ");
-                                if(raw.Length > 300)
+                                if(raw.Length > 320)
                                 {
-                                   raw = raw.Substring(0, 300) + "...";
+                                   raw = raw.Substring(0, 320) + "...";
                                 }
                                 @:@Html.Raw(raw)
                             }
