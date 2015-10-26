@@ -23,7 +23,7 @@
         <div class="col-xs-6">
             Search:
             <form action="@Url.Action("Index")" method="get" class="formalign">
-                <input type="text" id="search" name="search" class="searchbox valignc" />
+                <input type="text" id="search" name="search" class="searchbox boxshadow valignc" />
                 <button type="submit" class="btn btn-default btn-sm boxshadow valignc"><span class="network-name shadow">Search</span></button>
             </form>
         </div>
@@ -64,17 +64,17 @@
                 @:<div class="row">
                 tagClose = false;
             }
-                <div class="col-xs-5 boxshadowblog margin-b-l">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <a href="@Url.Action("Details", new { Slug = item.Slug })" class="shadowlink"><h1>@Html.DisplayFor(modelitem => item.Title)</h1></a>
-                            @if (item.MediaURL != null)
+                <div class="col-xs-6 boxshadowblog margin-b-l">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <a href="@Url.Action("Details", new { Slug = item.Slug })" class="shadowlink"><h1>@Html.DisplayFor(modelitem => item.Title)</h1></a>
+                                @if (item.MediaURL != null)
                             {
-                                <hr class="hrcolor">
-                                <img class="img-responsive image-b" src="@item.MediaURL" alt="">
+                                    <hr class="hrcolor">
+                                    <img class="img-responsive image-b" src="@item.MediaURL" alt="">
                             }
-                            <hr class="hrcolor">
-                            @{
+                                <hr class="hrcolor">
+                                @{
                                 var days = (System.DateTimeOffset.Now - item.Created).Days;
                                 var hours = (System.DateTimeOffset.Now - item.Created).Hours;
                                 var mins = (System.DateTimeOffset.Now - item.Created).Minutes;
@@ -96,8 +96,8 @@
                                     datestring = "~1 min ago";
                                 }
                                 @:<p><span class="glyphicon glyphicon-time"></span>Posted: @datestring</p>
-                            }
-                            @if (item.Updated != null)
+                                }
+                                @if (item.Updated != null)
                             {
                                 var daysu = (System.DateTimeOffset.Now - item.Updated.Value).Days;
                                 var hoursu = (System.DateTimeOffset.Now - item.Updated.Value).Hours;
@@ -119,10 +119,10 @@
                                 {
                                     datestringu = "~1 min ago";
                                 }
-                                @:<p><span class="glyphicon glyphicon-time"></span>Updated: @datestringu</p>
+                                    @:<p><span class="glyphicon glyphicon-time"></span>Updated: @datestringu</p>
                             }
-                            <hr class="hrcolor">
-                            @{
+                                <hr class="hrcolor">
+                                @{
                                 var raw = Html.Raw(item.Body).ToString();
                                 raw = raw.Replace("&nbsp;", " ");
                                 if(raw.Length > 320)
@@ -130,35 +130,34 @@
                                    raw = raw.Substring(0, 320) + "...";
                                 }
                                 @:@Html.Raw(raw)
-                            }
-                            <hr class="hrcolor">
-                            <div class="row margin-b-l">
-                                <div class="col-xs-12">
-                                    @if (User.IsInRole("Admin"))
+                                }
+                                <hr class="hrcolor">
+                                <div class="row margin-b-l">
+                                    <div class="col-xs-12">
+                                        @if (User.IsInRole("Admin"))
                                     {
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                                        @Html.Raw("|")
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                                            @Html.Raw("|")
                                     }
 
-                                    @Html.ActionLink("Details", "Details", new { id = item.Id, Slug = item.Slug })
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id, Slug = item.Slug })
 
-                                    @if (User.IsInRole("Admin"))
+                                        @if (User.IsInRole("Admin"))
                                     {
-                                        @Html.Raw("|")
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                            @Html.Raw("|")
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                                     }
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-1"></div>
-            if (counter % 2 == 0)
-            {
-                @:</div>
-                tagClose = true;
-            }
-            counter++;
+                    if (counter % 2 == 0)
+                    {
+                        @:</div>
+                        tagClose = true;
+                    }
+                    counter++;
         }
                       if (tagClose == false)
                       {

@@ -17,7 +17,7 @@ namespace WebApplication4.Migrations
 
         protected override void Seed(WebApplication4.Models.ApplicationDbContext context)
         {
-             var roleManager = new RoleManager<IdentityRole>(
+            var roleManager = new RoleManager<IdentityRole>(
                 new RoleStore<IdentityRole>(context));
 
             if (!context.Roles.Any(r => r.Name == "Admin"))
