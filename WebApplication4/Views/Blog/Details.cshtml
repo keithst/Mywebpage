@@ -199,9 +199,9 @@
                         @:<form role="form" action="@Url.Action("EComment", "Blog")" method="post" id="F @comment.Id" hidden>
                             @Html.AntiForgeryToken()
                             @:<input type="hidden" name="Id" value="@comment.Id" />
-                            @:<textarea name="Body" rows="3" cols="80" required>@comment.Body</textarea><br />
-                            @:Update Reason: <input type="text" name="UpdateReason" value="@comment.UpdateReason" required/><br />
-                            @:<button type="submit" class="btn btn-default btn-sm boxshadow margin-b margin-t"><span class="network-name shadow">Submit Changes</span></button>
+                            @:<textarea name="Body" rows="3" cols="80" class="margin-b-l" required>@comment.Body</textarea><br />
+                            @:Update Reason: <input type="text" name="UpdateReason" class="margin-b-l" value="@comment.UpdateReason" required/><br />
+                            @:<button type="submit" class="btn btn-default btn-sm boxshadow margin-b-l"><span class="network-name shadow">Submit Changes</span></button>
                         @:</form>
                         @:<form role="form" action="@Url.Action("DComment", "Blog")" method="post" id="FD @comment.Id" hidden>
                             @Html.AntiForgeryToken()

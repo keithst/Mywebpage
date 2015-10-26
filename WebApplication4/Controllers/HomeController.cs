@@ -24,8 +24,12 @@ namespace WebApplication4.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Contact(bool? sent)
         {
+            if (sent == true)
+            {
+                ViewBag.response = "Message Sent";
+            }
             return View();
         }
 
@@ -49,7 +53,7 @@ namespace WebApplication4.Controllers
 
             transportWeb.DeliverAsync(myMessage);
 
-            return RedirectToAction("Contact");
+            return RedirectToAction("Contact", "Home", new { sent = true });
         }
 
         public ActionResult Resume()

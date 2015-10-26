@@ -213,6 +213,7 @@
     <Content Include="Content\img\pic03.JPG" />
     <Content Include="Content\img\pic04.JPG" />
     <Content Include="Content\img\pic05.jpg" />
+    <Content Include="Content\img\profpic.jpg" />
     <Content Include="Content\landing-page.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\SyntaxHighlighter\shCore.css" />
