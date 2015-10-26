@@ -64,7 +64,7 @@
                 @:<div class="row">
                 tagClose = false;
             }
-                <div class="col-xs-6 boxshadowblog margin-b-l">
+                <div class="col-xs-5 boxshadowblog margin-b-l">
                         <div class="row">
                             <div class="col-xs-12">
                                 <a href="@Url.Action("Details", new { Slug = item.Slug })" class="shadowlink"><h1>@Html.DisplayFor(modelitem => item.Title)</h1></a>
@@ -152,6 +152,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-xs-1"></div>
                     if (counter % 2 == 0)
                     {
                         @:</div>

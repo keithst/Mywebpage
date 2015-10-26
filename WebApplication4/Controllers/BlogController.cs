@@ -186,7 +186,10 @@ namespace WebApplication4.Controllers
                 blogPost.Updated = System.DateTimeOffset.Now;
                 db.Posts.Attach(blogPost);
                 db.Entry(blogPost).Property("Title").IsModified = true;
-                db.Entry(blogPost).Property("MediaURL").IsModified = true;
+                if (image != null)
+                {
+                    db.Entry(blogPost).Property("MediaURL").IsModified = true;
+                }
                 db.Entry(blogPost).Property("Body").IsModified = true;
                 db.Entry(blogPost).Property("Updated").IsModified = true;
                 db.Entry(blogPost).Property("Published").IsModified = true;
