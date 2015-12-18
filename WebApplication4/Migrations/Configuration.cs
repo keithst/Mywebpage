@@ -38,7 +38,7 @@ namespace WebApplication4.Migrations
                         LastName = "Sturzenbecker",
                         DisplayName = "Ksturz"
                     },
-                        "sturze");
+                        "*");
             }
 
             var userId = userManager.FindByEmail("keith.sturzenbecker@gmail.com").Id;
